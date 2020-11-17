@@ -49,14 +49,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CartDTO'
+              $ref: '#/components/schemas/CarDTO'
       responses:
         '201':
           description: success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CartDTO'
+                $ref: '#/components/schemas/CarDTO'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -85,7 +85,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/CartDTO'
+                  $ref: '#/components/schemas/CarDTO'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -113,7 +113,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CartDTO'
+                $ref: '#/components/schemas/CarDTO'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -173,7 +173,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CartDTO'
+                $ref: '#/components/schemas/CarDTO'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -392,7 +392,7 @@ components:
           type: string
           example: Sample name
           description: full name of the sample
-    CartDTO:
+    CarDTO:
       type: object
       properties:
         id:
