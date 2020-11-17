@@ -41,7 +41,6 @@ paths:
     post:
       tags:
         - fleet
-        - sample
       summary: post fleet
       description: creates a new car for the fleet
       operationId: createCar
@@ -185,6 +184,165 @@ paths:
           description: id not found
         '500':
           $ref: '#/components/responses/ServerError'
+  /rental:
+    post:
+      tags:
+        - rental
+      summary: post rental
+      description: creates a rental
+      operationId: createRental
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RentalDTO'
+      responses:
+        '201':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RentalDTO'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    get:
+      tags:
+        - rental
+      summary: get rental
+      description: gets all the rentals, with filter options if specified
+      operationId: getRentals
+      parameters:
+        - in: query
+          name: userId
+          schema:
+            type: integer
+            format: int32
+          description: The user id used to filter
+        - in: query
+          name: carId
+          schema:
+            type: integer
+            format: int32
+            description: The car id used to filter
+        - in: query
+          name: status
+          schema:
+            type: string
+          description: The status of the rental used to filter
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RentalDTO'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /rental/{rentalId}:
+    get:
+      tags:
+        - rental
+      summary: get specific rental
+      description: retrieves a specific rental based on its id
+      operationId: getRental
+      parameters:
+        - in: path
+          name: rentalId
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RentalDTO'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Id not found
+        '500':
+          $ref: '#/components/responses/ServerError'
+    delete:
+      tags:
+        - rental
+      summary: deletes specific rental
+      description: deletes a specific rental based on its id
+      operationId: deleteRental
+      parameters:
+        - in: path
+          name: rentalId
+          schema:
+            type: integer
+          required: true
+      responses:
+        '204':
+          description: Deleted
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: id not found
+        '500':
+          $ref: '#/components/responses/ServerError'
+    patch:
+      tags:
+        - rental
+      summary: updates a rental properties
+      description: updates a rental properties
+      operationId: patchRental
+      parameters:
+        - in: path
+          name: rentalId
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RentalDTO"
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RentalDTO'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: id not found
+        '500':
+          $ref: '#/components/responses/ServerError'
 
 
 components:
@@ -222,6 +380,7 @@ components:
           type: string
         message:
           type: string
+
     SampleDTO:
       type: object
       properties:
@@ -293,3 +452,30 @@ components:
         from:
           type: string
           description: A string containing a JSON Pointer value.
+    RentalDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: id of the rental
+        userId:
+          type: integer
+          format: int32
+          description: id of the user
+        carId:
+          type: integer
+          format: int32
+          description: id of the car
+        startDateTime:
+          type: string
+          format: date-time
+          description: the start date and time of the rental
+        endDateTime:
+          type: string
+          format: date-time
+          description: the end date and time of the rental
+        status:
+          type: string
+          enum: [ "ACTIVE", "CANCELLED" ]
+          description: the status of the rental
