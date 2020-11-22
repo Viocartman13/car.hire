@@ -589,10 +589,14 @@ components:
           type: integer
           format: int32
           description: id of the rental
-        user:
-          $ref: "#/components/schemas/UserDTO"
-        car:
-          $ref: "#/components/schemas/CarDTO"
+        userId:
+          type: integer
+          format: int32
+          description: id of the user
+        carId:
+          type: integer
+          format: int32
+          description: id of the car
         startDateTime:
           type: string
           format: date-time
