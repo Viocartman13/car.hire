@@ -530,8 +530,7 @@ components:
           format: int32
           description: id of the car
         make:
-          type: string
-          description: make/brand of the car
+          $ref: '#/components/schemas/MakeDTO'
         model:
           type: string
           description: model of the car
@@ -548,6 +547,8 @@ components:
           description: the fuel type of the car
         carClass:
           type: string
+          enum: [ "Sports", "Supercar", "Premium Compact", "Executive", "Off-road vehicle",
+                  "Sports utility vehicle", "Muscle", "City car" ]
           description: the class of the car
         status:
           type: string
@@ -634,8 +635,7 @@ components:
           type: string
           description: last name of the user
         countryOfResidence:
-          type: string
-          description: country of residence of the user
+          $ref: "#/components/schemas/CountryDTO"
         driverLicenseNumber:
           type: string
           description: driver license number of the user
@@ -643,4 +643,33 @@ components:
           type: string
           enum: [ "ACTIVE", "DELETED" ]
           description: the status of the user
+    CountryDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: id of the country
+        name:
+          type: string
+          description: name of the country
+        isoCode:
+          type: string
+          description: isoCode of the country
+    MakeDTO:
+      type: object
+      description: the make/brand for the most popular cars
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: id of the make
+        name:
+          type: string
+          description: name of the make/brand
+        description:
+          type: string
+          description: description of the make/brand
+
+
 
