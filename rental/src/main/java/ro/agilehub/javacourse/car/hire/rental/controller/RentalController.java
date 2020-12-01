@@ -26,12 +26,12 @@ public class RentalController implements RentalApi {
     }
 
     @Override
-    public ResponseEntity<Void> deleteRental(Integer rentalId) {
+    public ResponseEntity<Void> deleteRental(String rentalId) {
         return ResponseEntity.ok().build();
     }
 
     @Override
-    public ResponseEntity<RentalDTO> getRental(Integer rentalId) {
+    public ResponseEntity<RentalDTO> getRental(String rentalId) {
         RentalDTO rental = new RentalDTO();
         rental.setCarId("1");
         rental.setUserId("2");
@@ -42,7 +42,7 @@ public class RentalController implements RentalApi {
     }
 
     @Override
-    public ResponseEntity<List<RentalDTO>> getRentals(@Valid Integer userId, @Valid Integer carId, @Valid String status) {
+    public ResponseEntity<List<RentalDTO>> getRentals(@Valid String userId, @Valid String carId, @Valid String status) {
         RentalDTO rental1 = new RentalDTO();
         rental1.setCarId("1");
         rental1.setUserId("2");
@@ -59,7 +59,7 @@ public class RentalController implements RentalApi {
     }
 
     @Override
-    public ResponseEntity<RentalDTO> patchRental(Integer rentalId, @Valid List<PatchDocumentDTO> patchDocumentDTO) {
+    public ResponseEntity<RentalDTO> patchRental(String rentalId, @Valid List<PatchDocumentDTO> patchDocumentDTO) {
         RentalDTO rental1 = new RentalDTO();
         rental1.setCarId("1");
         rental1.setUserId("1");

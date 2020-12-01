@@ -11,8 +11,13 @@ import java.util.stream.Collectors;
 
 public class MakeServiceImpl implements MakeService {
 
-    private MakeRepository makeRepository;
-    private MakeMapper makeMapper;
+    private final MakeRepository makeRepository;
+    private final MakeMapper makeMapper;
+
+    public MakeServiceImpl(MakeRepository makeRepository, MakeMapper makeMapper) {
+        this.makeRepository = makeRepository;
+        this.makeMapper = makeMapper;
+    }
 
     @Override
     public List<MakeDO> findAll() {

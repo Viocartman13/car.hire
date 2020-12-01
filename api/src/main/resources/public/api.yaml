@@ -105,7 +105,7 @@ paths:
         - in: path
           name: carId
           schema:
-            type: integer
+            type: string
           required: true
       responses:
         '200':
@@ -134,7 +134,7 @@ paths:
         - in: path
           name: carId
           schema:
-            type: integer
+            type: string
           required: true
       responses:
         '204':
@@ -159,7 +159,7 @@ paths:
         - in: path
           name: carId
           schema:
-            type: integer
+            type: string
           required: true
       requestBody:
         required: true
@@ -222,14 +222,12 @@ paths:
         - in: query
           name: userId
           schema:
-            type: integer
-            format: int32
+            type: string
           description: The user id used to filter
         - in: query
           name: carId
           schema:
-            type: integer
-            format: int32
+            type: string
             description: The car id used to filter
         - in: query
           name: status
@@ -264,7 +262,7 @@ paths:
         - in: path
           name: rentalId
           schema:
-            type: integer
+            type: string
           required: true
       responses:
         '200':
@@ -293,7 +291,7 @@ paths:
         - in: path
           name: rentalId
           schema:
-            type: integer
+            type: string
           required: true
       responses:
         '204':
@@ -318,7 +316,7 @@ paths:
         - in: path
           name: rentalId
           schema:
-            type: integer
+            type: string
           required: true
       requestBody:
         required: true
@@ -399,7 +397,7 @@ paths:
       - in: path
         name: userId
         schema:
-          type: integer
+          type: string
         required: true
     get:
       tags:

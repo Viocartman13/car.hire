@@ -16,6 +16,11 @@ public class CarServiceImpl implements CarService {
     private CarRepository carRepository;
     private CarMapper carMapper;
 
+    public CarServiceImpl(CarRepository carRepository, CarMapper carMapper) {
+        this.carRepository = carRepository;
+        this.carMapper = carMapper;
+    }
+
     @Override
     public List<CarDO> findAll() {
         return carRepository.findAll()

@@ -24,12 +24,12 @@ public class UserController implements UserApi {
     }
 
     @Override
-    public ResponseEntity<Void> deleteUser(Integer userId) {
+    public ResponseEntity<Void> deleteUser(String userId) {
         return ResponseEntity.ok().build();
     }
 
     @Override
-    public ResponseEntity<UserDTO> getUser(Integer userId) {
+    public ResponseEntity<UserDTO> getUser(String userId) {
         UserDTO user = new UserDTO();
         user.setId("13");
         user.setUserName("Viocartman");
@@ -57,7 +57,7 @@ public class UserController implements UserApi {
     }
 
     @Override
-    public ResponseEntity<UserDTO> patchUser(Integer userId, @Valid List<PatchDocumentDTO> patchDocumentDTO) {
+    public ResponseEntity<UserDTO> patchUser(String userId, @Valid List<PatchDocumentDTO> patchDocumentDTO) {
         UserDTO user2 = new UserDTO();
         user2.setId("26");
         user2.setUserName("Viocartman1");
