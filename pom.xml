@@ -32,6 +32,8 @@
         <springfox.version>3.0.0</springfox.version>
         <databind.nullable.version>0.2.1</databind.nullable.version>
         <spring-openapi.version>1.4.8</spring-openapi.version>
+        <mapstruct.version>1.4.1.Final</mapstruct.version>
+        <lombok.version>1.18.16</lombok.version>
     </properties>
 
     <packaging>pom</packaging>
@@ -44,6 +46,15 @@
                 <version>Hoxton.SR9</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -58,6 +69,19 @@
                     <source>15</source>
                     <target>15</target>
                     <compilerArgs>--enable-preview</compilerArgs>
+                    <compilerArgs>--enable-preview</compilerArgs>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${mapstruct.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
                 </configuration>
             </plugin>
         </plugins>

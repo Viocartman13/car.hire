@@ -15,7 +15,7 @@ public class SampleController implements SampleApi {
     @Override
     public ResponseEntity<List<SampleDTO>> getSamples() {
         SampleDTO sampleDTO = new SampleDTO();
-        sampleDTO.setId(1);
+        sampleDTO.setId("1");
         sampleDTO.setName("My first sample");
         return ResponseEntity.ok(Collections.singletonList(sampleDTO));
     }

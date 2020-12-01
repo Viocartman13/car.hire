@@ -16,14 +16,14 @@ public class FleetController implements FleetApi {
     @Override
     public ResponseEntity<CarDTO> createCar(@Valid CarDTO carDTO) {
         MakeDTO bmwMake = new MakeDTO();
-        bmwMake.setId(1);
+        bmwMake.setId("1");
         bmwMake.setName("BMW");
         bmwMake.setDescription("BMW brand");
 
         CarDTO car = new CarDTO();
         car.setMake(bmwMake);
         car.setFuel("Gasoline");
-        car.setId(1);
+        car.setId("1");
 
         return ResponseEntity.ok(car);
     }
@@ -36,24 +36,24 @@ public class FleetController implements FleetApi {
     @Override
     public ResponseEntity<List<CarDTO>> getFleet(@Valid String status) {
         MakeDTO bmwMake = new MakeDTO();
-        bmwMake.setId(1);
+        bmwMake.setId("1");
         bmwMake.setName("BMW");
         bmwMake.setDescription("BMW brand");
 
         CarDTO z3 = new CarDTO();
         z3.setMake(bmwMake);
         z3.setFuel("Gasoline");
-        z3.setId(1);
+        z3.setId("1");
 
         MakeDTO fordMake = new MakeDTO();
-        fordMake.setId(2);
+        fordMake.setId("2");
         fordMake.setName("Ford");
         fordMake.setDescription("Ford brand");
 
         CarDTO focus = new CarDTO();
         focus.setMake(fordMake);
         focus.setFuel("Diesel");
-        focus.setId(2);
+        focus.setId("2");
 
         return ResponseEntity.ok(List.of(z3, focus));
     }
@@ -61,14 +61,14 @@ public class FleetController implements FleetApi {
     @Override
     public ResponseEntity<CarDTO> getFleetCar(Integer carId) {
         MakeDTO bmwMake = new MakeDTO();
-        bmwMake.setId(1);
+        bmwMake.setId("1");
         bmwMake.setName("BMW");
         bmwMake.setDescription("BMW brand");
 
         CarDTO z3 = new CarDTO();
         z3.setMake(bmwMake);
         z3.setFuel("Gasoline");
-        z3.setId(1);
+        z3.setId("1");
 
         return ResponseEntity.ok(z3);
     }
@@ -76,14 +76,14 @@ public class FleetController implements FleetApi {
     @Override
     public ResponseEntity<CarDTO> patchFleetCar(Integer carId, @Valid List<PatchDocumentDTO> patchDocumentDTO) {
         MakeDTO fordMake = new MakeDTO();
-        fordMake.setId(2);
+        fordMake.setId("2");
         fordMake.setName("Ford");
         fordMake.setDescription("Ford brand");
 
         CarDTO focus = new CarDTO();
         focus.setMake(fordMake);
         focus.setFuel("Diesel");
-        focus.setId(2);
+        focus.setId("2");
 
         return ResponseEntity.ok(focus);
     }
