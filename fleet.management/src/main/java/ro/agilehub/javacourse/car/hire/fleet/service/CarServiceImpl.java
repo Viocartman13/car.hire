@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import ro.agilehub.javacourse.car.hire.fleet.domain.CarDO;
 import ro.agilehub.javacourse.car.hire.fleet.entity.Car;
 import ro.agilehub.javacourse.car.hire.fleet.repository.CarRepository;
-import ro.agilehub.javacourse.car.hire.fleet.service.mapper.CarMapper;
+import ro.agilehub.javacourse.car.hire.fleet.service.mapper.CarMapperService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,12 +13,12 @@ import java.util.stream.Collectors;
 @Service
 public class CarServiceImpl implements CarService {
 
-    private CarRepository carRepository;
-    private CarMapper carMapper;
+    private final CarRepository carRepository;
+    private final CarMapperService carMapperService;
 
-    public CarServiceImpl(CarRepository carRepository, CarMapper carMapper) {
+    public CarServiceImpl(CarRepository carRepository, CarMapperService carMapperService) {
         this.carRepository = carRepository;
-        this.carMapper = carMapper;
+        this.carMapperService = carMapperService;
     }
 
     @Override
@@ -48,10 +48,10 @@ public class CarServiceImpl implements CarService {
     }
 
     private CarDO mapToDO(Car car) {
-        return carMapper.toDomainObject(car);
+        return carMapperService.toDomainObject(car);
     }
 
     private Car mapToEntity(CarDO carDO) {
-        return carMapper.toEntity(carDO);
+        return carMapperService.toEntity(carDO);
     }
 }

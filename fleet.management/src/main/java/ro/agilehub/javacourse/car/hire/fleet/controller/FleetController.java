@@ -7,8 +7,8 @@ import ro.agilehub.javacourse.car.hire.api.model.CarDTO;
 import ro.agilehub.javacourse.car.hire.api.model.MakeDTO;
 import ro.agilehub.javacourse.car.hire.api.model.PatchDocumentDTO;
 import ro.agilehub.javacourse.car.hire.api.specification.FleetApi;
+import ro.agilehub.javacourse.car.hire.fleet.controller.mapper.CarMapperController;
 import ro.agilehub.javacourse.car.hire.fleet.service.CarServiceImpl;
-import ro.agilehub.javacourse.car.hire.fleet.service.mapper.CarMapper;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -18,18 +18,18 @@ import java.util.stream.Collectors;
 public class FleetController implements FleetApi {
 
     private final CarServiceImpl carService;
-    private final CarMapper carMapper;
+    private final CarMapperController carMapperController;
 
-    public FleetController(CarServiceImpl carService, CarMapper carMapper) {
+    public FleetController(CarServiceImpl carService, CarMapperController carMapperController) {
         this.carService = carService;
-        this.carMapper = carMapper;
+        this.carMapperController = carMapperController;
     }
 
     @Override
     public ResponseEntity<CarDTO> createCar(@Valid CarDTO carDTO) {
         try {
-            var savedCar = carService.addCar(carMapper.dtoToDomainObject(carDTO));
-            return ResponseEntity.ok(carMapper.domainObjectToDTO(savedCar));
+            var savedCar = carService.addCar(carMapperController.dtoToDomainObject(carDTO));
+            return ResponseEntity.ok(carMapperController.domainObjectToDTO(savedCar));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
@@ -50,7 +50,7 @@ public class FleetController implements FleetApi {
         try {
             return ResponseEntity.ok(carService.findAll()
                     .stream()
-                    .map(carMapper::domainObjectToDTO)
+                    .map(carMapperController::domainObjectToDTO)
                     .collect(Collectors.toList()));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -61,7 +61,7 @@ public class FleetController implements FleetApi {
     public ResponseEntity<CarDTO> getFleetCar(String carId) {
         try {
             var foundCar = carService.findById(carId);
-            return ResponseEntity.ok(carMapper.domainObjectToDTO(foundCar));
+            return ResponseEntity.ok(carMapperController.domainObjectToDTO(foundCar));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }

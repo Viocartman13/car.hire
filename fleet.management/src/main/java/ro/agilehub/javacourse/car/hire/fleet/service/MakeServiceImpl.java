@@ -4,7 +4,7 @@ import org.bson.types.ObjectId;
 import ro.agilehub.javacourse.car.hire.fleet.domain.MakeDO;
 import ro.agilehub.javacourse.car.hire.fleet.entity.Make;
 import ro.agilehub.javacourse.car.hire.fleet.repository.MakeRepository;
-import ro.agilehub.javacourse.car.hire.fleet.service.mapper.MakeMapper;
+import ro.agilehub.javacourse.car.hire.fleet.service.mapper.MakeMapperService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,11 +12,11 @@ import java.util.stream.Collectors;
 public class MakeServiceImpl implements MakeService {
 
     private final MakeRepository makeRepository;
-    private final MakeMapper makeMapper;
+    private final MakeMapperService makeMapperService;
 
-    public MakeServiceImpl(MakeRepository makeRepository, MakeMapper makeMapper) {
+    public MakeServiceImpl(MakeRepository makeRepository, MakeMapperService makeMapperService) {
         this.makeRepository = makeRepository;
-        this.makeMapper = makeMapper;
+        this.makeMapperService = makeMapperService;
     }
 
     @Override
@@ -47,10 +47,10 @@ public class MakeServiceImpl implements MakeService {
     }
 
     private MakeDO mapToDO(Make make) {
-        return makeMapper.toDomainObject(make);
+        return makeMapperService.toDomainObject(make);
     }
 
     private Make mapToEntity(MakeDO makeDO) {
-        return makeMapper.toEntity(makeDO);
+        return makeMapperService.toEntity(makeDO);
     }
 }
