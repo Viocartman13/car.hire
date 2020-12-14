@@ -28,5 +28,6 @@ public class Car {
     private String fuel;
     private String carClass;
     private String status;
+    private String registrationNumber;
 
 }

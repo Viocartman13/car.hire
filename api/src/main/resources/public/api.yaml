@@ -77,6 +77,7 @@ paths:
           schema:
             type: string
           description: The status of the returned cars belonging to the fleet
+          required: false
       responses:
         '200':
           description: success
@@ -550,6 +551,9 @@ components:
           type: string
           enum: [ "ACTIVE", "DELETED" ]
           description: the status of the car
+        registrationNumber:
+          type: string
+          description: the registration number of the car
     PatchRequestDTO:
       type: array
       items:

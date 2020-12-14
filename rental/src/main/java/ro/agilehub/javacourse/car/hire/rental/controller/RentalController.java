@@ -1,6 +1,7 @@
 package ro.agilehub.javacourse.car.hire.rental.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ro.agilehub.javacourse.car.hire.api.model.PatchDocumentDTO;
 import ro.agilehub.javacourse.car.hire.api.model.RentalDTO;
@@ -11,6 +12,7 @@ import java.time.OffsetDateTime;
 import java.util.List;
 
 @RestController
+@RequestMapping("/rental")
 public class RentalController implements RentalApi {
 
     @Override

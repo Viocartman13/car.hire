@@ -4,10 +4,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import ro.agilehub.javacourse.car.hire.api.model.CarDTO;
-import ro.agilehub.javacourse.car.hire.api.model.MakeDTO;
 import ro.agilehub.javacourse.car.hire.api.model.PatchDocumentDTO;
 import ro.agilehub.javacourse.car.hire.api.specification.FleetApi;
 import ro.agilehub.javacourse.car.hire.fleet.controller.mapper.CarMapperController;
+import ro.agilehub.javacourse.car.hire.fleet.domain.CarDO;
 import ro.agilehub.javacourse.car.hire.fleet.service.CarServiceImpl;
 
 import javax.validation.Valid;
@@ -29,7 +29,7 @@ public class FleetController implements FleetApi {
     public ResponseEntity<CarDTO> createCar(@Valid CarDTO carDTO) {
         try {
             var savedCar = carService.addCar(carMapperController.dtoToDomainObject(carDTO));
-            return ResponseEntity.ok(carMapperController.domainObjectToDTO(savedCar));
+            return ResponseEntity.status(HttpStatus.CREATED).body(carMapperController.domainObjectToDTO(savedCar));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
@@ -69,17 +69,12 @@ public class FleetController implements FleetApi {
 
     @Override
     public ResponseEntity<CarDTO> patchFleetCar(String carId, @Valid List<PatchDocumentDTO> patchDocumentDTO) {
-        MakeDTO fordMake = new MakeDTO();
-        fordMake.setId("2");
-        fordMake.setName("Ford");
-        fordMake.setDescription("Ford brand");
-
-        CarDTO focus = new CarDTO();
-        focus.setMake(fordMake);
-        focus.setFuel("Diesel");
-        focus.setId("2");
-
-        return ResponseEntity.ok(focus);
+        try {
+            CarDO carDO = carService.updateCar(carId, patchDocumentDTO);
+            return ResponseEntity.ok(carMapperController.domainObjectToDTO(carDO));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
 }
