@@ -1,6 +1,7 @@
 package ro.agilehub.javacourse.car.hire.fleet.entity;
 
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.bson.types.ObjectId;
@@ -14,6 +15,7 @@ import java.time.LocalDate;
 @Data
 @EqualsAndHashCode(of = "id")
 @Document("car")
+@Builder
 public class Car {
 
     @Id
