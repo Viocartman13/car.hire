@@ -165,6 +165,121 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '500':
           $ref: '#/components/responses/ServerError'
+  /fleet:
+    post:
+      tags:
+        - fleet
+      summary: post fleet
+      description: creates a new car for the fleet
+      operationId: createCar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarDTO'
+      responses:
+        '201':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarDTO'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    get:
+      tags:
+        - fleet
+      summary: get fleet
+      description: gets the entire fleet, with filter options if specified
+      operationId: getFleet
+      parameters:
+        - in: query
+          name: status
+          schema:
+            type: string
+          description: The status of the returned cars belonging to the fleet
+          required: false
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CarDTO'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /fleet/{carId}:
+      get:
+        tags:
+          - fleet
+        summary: get specific car from fleet
+        description: retrieves a specific car from fleet based on its id
+        operationId: getFleetCar
+        parameters:
+          - in: path
+            name: carId
+            schema:
+              type: integer
+              format: int32
+            required: true
+        responses:
+          '200':
+            description: success
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/CarDTO'
+          '400':
+            $ref: '#/components/responses/BadRequest'
+          '401':
+            $ref: '#/components/responses/Unauthorized'
+          '403':
+            $ref: '#/components/responses/Unauthorized'
+          '404':
+            description: Id not found
+          '500':
+            $ref: '#/components/responses/ServerError'
+      delete:
+        tags:
+          - fleet
+        summary: deletes specific car from fleet
+        description: deletes a specific car from fleet based on its id
+        operationId: deleteFleetCar
+        parameters:
+          - in: path
+            name: carId
+            schema:
+              type: integer
+              format: int32
+            required: true
+        responses:
+          '204':
+            description: Deleted
+          '400':
+            $ref: '#/components/responses/BadRequest'
+          '401':
+            $ref: '#/components/responses/Unauthorized'
+          '403':
+            $ref: '#/components/responses/Unauthorized'
+          '404':
+            description: id not found
+          '500':
+            $ref: '#/components/responses/ServerError'
 
 components:
   responses:
