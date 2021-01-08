@@ -1,6 +1,7 @@
 package ro.agilehub.javacourse.car.hire.fleet.entity;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,6 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import java.time.LocalDate;
 
 @Data
+@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Document("car")
 @Builder

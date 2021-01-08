@@ -1,5 +1,6 @@
 package ro.agilehub.javacourse.car.hire.fleet.service.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.bson.types.ObjectId;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,6 +30,8 @@ public class CarServiceImplTest {
     private CarRepository carRepository;
     @Mock
     private CarMapperService carMapperService;
+    @Mock
+    private ObjectMapper objectMapper;
 
     @InjectMocks
     private CarServiceImpl carService;
@@ -113,8 +116,17 @@ public class CarServiceImplTest {
         carService.addCar(carDO);
     }
 
-    @Test
-    public void updateCar_whenInputOk_thenResult() {
-
-    }
+    //@Test
+    //TODO: complete test
+//    public void updateCar_whenInputOk_thenResult() throws JsonPatchException, JsonProcessingException {
+//        PatchDocumentDTO patchDocumentDTO = new PatchDocumentDTO();
+//        patchDocumentDTO.setOperation(PatchDocumentDTO.OperationEnum.ADD);
+//        patchDocumentDTO.setPath("/mileage");
+//        patchDocumentDTO.setValue("33333");
+//
+//        when(objectMapper.convertValue(any(), any(Class.class))).thenCallRealMethod();
+//
+//        carService.updateCar("666f6f2d6261722d71757578", List.of(patchDocumentDTO));
+//
+//    }
 }
