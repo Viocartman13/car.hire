@@ -2,6 +2,7 @@ package ro.agilehub.javacourse.car.hire.fleet.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RestController;
 import ro.agilehub.javacourse.car.hire.api.model.CarDTO;
 import ro.agilehub.javacourse.car.hire.api.specification.FleetApi;
@@ -13,6 +14,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@PreAuthorize("hasAuthority('MANAGER')")
+
 public class FleetController implements FleetApi {
 
     private final CarServiceImpl carService;

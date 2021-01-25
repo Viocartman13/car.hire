@@ -411,6 +411,9 @@ components:
           $ref: '#/components/schemas/CarClass'
         status:
           $ref: '#/components/schemas/CarStatus'
+        registrationNumber:
+          type: string
+          description: the registration number of the car
     FuelType:
       type: string
       enum:
